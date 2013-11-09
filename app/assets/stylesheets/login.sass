@@ -45,6 +45,30 @@ $brand-secondary: #E5E5E5
 			color: $brand-primary
 			font-size: 72px
 
+			span
+				+transition(all 0.5s ease-in-out)
+				+opacity(1)
+				display: inline-block
+
+			.practice
+				&.translate
+					+translate(183px, 0)
+					+opacity(0)
+
+			.presentation
+				&.translate
+					+translate(-183px, 0)
+					+opacity(0)
+
+
+			.practation
+				&.translate
+					+opacity(1)
+
+				+opacity(0)
+				display: block
+				position: relative
+				top: -78px
 
 #login
 	margin-top: 50px
