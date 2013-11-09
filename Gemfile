@@ -10,6 +10,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
+gem 'thin'
 
 group :doc do
   gem 'sdoc', require: false
