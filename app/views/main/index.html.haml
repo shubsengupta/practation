@@ -1,7 +1,13 @@
 #main
-	.container
-		%nav.navbar.navbar-default{role: 'navigation'}
-			.navbar-header
+  .container
+    %nav.navbar.navbar-default{role: 'navigation'}
+      .navbar-header
+        .logo
 
-			%ul.nav.navbar-nav.pull-right
-				%li=link_to 'Logout', sign_out_path
+      %ul.nav.navbar-nav.pull-right
+        %li=link_to 'Logout', sign_out_path
+
+
+  .container#view
+
+= render 'templates'

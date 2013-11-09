@@ -18,7 +18,11 @@ class Speech.Delegator extends Backbone.Router
 
 
 $ ->
-	Pra.del = new Speech.Delegator()
+	Pra.delegator = new Speech.Delegator()
+	Backbone.history.start
+		pushState: yes
+		hashChange: no
+		root: '/dashboard'
 
 
 	
