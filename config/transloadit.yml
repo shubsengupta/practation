@@ -1,0 +1,16 @@
+auth:
+  key     : 'ad90a4a0c6fec9c8338ec40594e3d9f0'
+  secret  : 'secret908bd1ff0568b30d4d0942bf98edad227f65d55b' # optional, but highly recommended
+  duration: 1800      # 30 minute validity period for signed upload forms
+
+templates:
+  # template identified by template_id
+  s3_store: '4d2e...'
+
+  # template defined inline
+  image_resize:
+    steps:
+      resize:
+        robot : '/image/resize'
+        width : 320
+        height: 200
