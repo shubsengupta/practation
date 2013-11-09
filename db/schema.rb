@@ -11,16 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131109042638) do
+ActiveRecord::Schema.define(version: 20131109101141) do
 
   create_table "presentations", force: true do |t|
     t.string   "name"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "type"
   end
 
   add_index "presentations", ["user_id"], name: "index_presentations_on_user_id", using: :btree
+
+  create_table "slide_presentations", force: true do |t|
+    t.integer "presentation_id"
+  end
+
+  add_index "slide_presentations", ["presentation_id"], name: "index_slide_presentations_on_presentation_id", using: :btree
+
+  create_table "slideshow_slides", force: true do |t|
+    t.integer "slide_presentation_id"
+    t.string  "image"
+    t.string  "text"
+  end
+
+  add_index "slideshow_slides", ["slide_presentation_id"], name: "index_slideshow_slides_on_slide_presentation_id", using: :btree
+
+  create_table "text_presentations", force: true do |t|
+    t.integer "presentation_id"
+    t.string  "text"
+  end
+
+  add_index "text_presentations", ["presentation_id"], name: "index_text_presentations_on_presentation_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email"
