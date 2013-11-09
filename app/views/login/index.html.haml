@@ -12,13 +12,13 @@
 		.row
 			.col-xs-12.col-md-8.col-md-offset-2
 				#login
-					%form{:role => 'form'}
+					%form{:role => 'form', :action => sign_in_url, :method => 'POST'}
 						.form-group
 							%level{:for => 'email'} Email Address
-							%input.form-control#email{:type => 'email', :placeholder => 'Email Address'}
+							%input.form-control#email{:type => 'email', :placeholder => 'Email Address', :name => 'email'}
 						.form-group
 							%level{:for => 'password'} Password
-							%input.form-control#email{:type => 'password', :placeholder => 'Password'}
+							%input.form-control#email{:type => 'password', :placeholder => 'Password', :name => 'pass'}
 
 						.submit
 							%button.btn.btn-default.btn-lg{:type => 'submit'} Login
