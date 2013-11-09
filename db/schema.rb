@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131109041803) do
+ActiveRecord::Schema.define(version: 20131109042638) do
+
+  create_table "presentations", force: true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "presentations", ["user_id"], name: "index_presentations_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email"
