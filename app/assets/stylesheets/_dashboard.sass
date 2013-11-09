@@ -2,9 +2,12 @@
   line-height: 3
 
   tr
-    td:first-child
-      padding-left: 20px 
-
+    td
+      padding: 0 20px 
+      border-right: 2px solid $brand-secondary
+    td:last-child
+      border-right: none
+      
   tr:not(:first-child):hover 
     background-color: $brand-primary
     cursor: pointer
