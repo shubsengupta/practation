@@ -75,7 +75,7 @@ window.check = () ->
     vocal_pointer += first_space + 1
   else if is_in == 0
     $('#body-text').html( $('#body-text').html().substr(first_space + 1) )
-    $('#body-text-checked').html( $('#body-text-checked').html() + "<span style='color:green'>" + first_word + " </span>" )
+    $('#body-text-checked').html( $('#body-text-checked').html() + "<span style='color:#07BE9A'>" + first_word + " </span>" )
     vocal_pointer += first_space + 1
   else
     missed = $('#body-text').html().substr(waiting_pointer).substr(0, is_in)
