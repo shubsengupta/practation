@@ -15,16 +15,13 @@ $ ->
       console.log('Final: ' + arguments[0])
       $('span#final_span').html(arguments[0])
       last_text = arguments[0]
+      setInterval () ->
+        window.check()
+      , 100
   Backbone.Events.on 'interimTextUpdate', ->
     $('span#interim_span').html(arguments[0])
-    console.log('Interim: ' + arguments[0])
 
-  window.wait = false
-  setInterval ->
-    unless wait
-      wait = true
-      window.check()
-  , 200
+  window.wait = true
 
   $('button#startButton').click (e) ->
     text_map = $('textarea#input').val().trim().replace(/[\.,-\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s{2,}/g," ")
@@ -54,7 +51,7 @@ $ ->
           is_in = -1
     if is_in == -1
       #$('#checked').html( $('#checked').html() + "<span style='color:red'>" + first_word + "</span>" )
-      $('#checked').html( $('#checked').html() + "<span style='color:red'>" + first_word + " </span>" )
+      $('#checked').html( $('#checked').html() + "<span style='color:red'>(" + first_word + ") </span>" )
       #$(div_id).html( $(div_id).html().substr(first_space + 1) )
       vocal_pointer += first_space + 1
       #window.words_hidden += 1
