@@ -14,7 +14,7 @@
 				#login
 					%form{:role => 'form'}
 						.form-group
-							%level{:for => 'email'} Email Address
+							%level{:for => 'email'} Ema il Address
 							%input.form-control#email{:type => 'email', :placeholder => 'Email Address'}
 						.form-group
 							%level{:for => 'password'} Password
@@ -51,14 +51,14 @@
 
 			.col-sm-4
 				.big-icon
-					%i.icon-cloud
+					= fa_icon 'cloud'
 
 		.row
 			.col-sm-4.col-sm-offset-2
 				.big-icons
-					%i.icon-microphone.brand-colour
-					%i.icon-long-arrow-right
-					%i.icon-file-text.brand-colour
+					= fa_icon 'microphone', class: 'brand-colour'
+					= fa_icon 'long-arrow-right'
+					= fa_icon 'file-text', class: 'brand-colour'
 				
 			.col-sm-4
 				.callout
