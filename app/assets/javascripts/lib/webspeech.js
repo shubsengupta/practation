@@ -204,8 +204,11 @@ function WebSpeechRecognition() {
           r.interim_transcript += event.results[i][0].transcript;
         }
       }
-      r.final_transcript = r.capitalize(r.final_transcript);
-      r.finalText(r.final_transcript);
+
+      newFinal = r.final_transcript + r.interim_transcript.split(' ').splice(0, r.interim_transcript.split(' ').length - 3).join(' ')
+      newInterim = r.interim_transcript.split(' ').splice( r.interim_transcript.split(' ').length - 3, r.interim_transcript.split(' ').length).join(' ')
+
+      r.finalText(newFinal);
       r.interimText(r.interim_transcript);
       if (!!r.onResult) {
         r.onResult();
