@@ -1,0 +1,9 @@
+!!!
+%html
+  %head
+    %title Test - SpeechApp
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "test", "data-turbolinks-track" => true
+    = csrf_meta_tags
+  %body
+    = yield

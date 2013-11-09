@@ -13,5 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require lib/lodash.custom
+//= require lib/backbone
 //= require lib/webspeech
-//= require_tree .
+//= require_tree ./test/.

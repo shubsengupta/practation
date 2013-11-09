@@ -13,3 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+
+//= require lib/lodash.custom
+//= require lib/backbone
