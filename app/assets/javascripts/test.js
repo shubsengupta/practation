@@ -14,4 +14,4 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require lib/webspeech
-//= require_tree .
+//= require_tree ./test/.
