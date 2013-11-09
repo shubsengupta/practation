@@ -7,3 +7,10 @@ _.extend Speech.Controller,
 		$.get Speech.Presentation.prototype.urlRoot, (data) ->
 			console.log data
 			Pra.presentations = new Speech.PresentationsCollection(data)
+
+			Pra.listView = new Speech.ListView
+				collection: Pra.presentations
+				className: 'presentation-item'
+				el: document.getElementById('view')
+
+			Pra.listView.render()
