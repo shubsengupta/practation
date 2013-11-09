@@ -16,7 +16,6 @@ class Speech.Delegator extends Backbone.Router
 		Speech.Controller.load_show(@, id)
 
 
-
 $ ->
 	Pra.delegator = new Speech.Delegator()
 	Backbone.history.start
