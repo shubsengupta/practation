@@ -52,8 +52,8 @@ function WebSpeechRecognition() {
     recognizing = true;
     ignore_onend = false;
     r.final_transcript = '';
-    r.setText(r.final_results, '');
-    r.setText(r.interim_results, '');
+    r.finalTextCalc(r.final_results, '');
+    r.interimTextCalc(r.interim_results, '');
     r.recognition.continuous = r.continuous;
     r.recognition.interimResults = !!r.interim_results;
     r.recognition.maxAlternatives = r.maxAlternatives;
@@ -122,15 +122,22 @@ function WebSpeechRecognition() {
   };
 
   r.setText = function(elem, text) {
-    // if (elem) {
-    //   if (elem.nodeName == 'INPUT') {
-    //     elem.value = text;
-    //   } else {
-    //   elem.innerHTML = r.linebreak(text);
-    //   }
-    // }
-    console.log(text)
+    if (elem) {
+      if (elem.nodeName == 'INPUT') {
+        elem.value = text;
+      } else {
+      elem.innerHTML = r.linebreak(text);
+      }
+    }
   };
+
+  r.interimTextCalc = function(elem, text) {
+    //console.log(text)
+  }
+
+  r.finalTextCalc = function(elem, text) {
+    console.log("Final" + text)
+  }
 
   // id is a DOM element or a string containing id or null.
   // Returns DOM element or null.
