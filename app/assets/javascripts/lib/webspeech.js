@@ -209,7 +209,7 @@ function WebSpeechRecognition() {
       newInterim = r.interim_transcript.split(' ').splice( r.interim_transcript.split(' ').length - 3, r.interim_transcript.split(' ').length).join(' ')
 
       r.finalText(newFinal);
-      r.interimText(r.interim_transcript);
+      r.interimText(newInterim);
       if (!!r.onResult) {
         r.onResult();
       }

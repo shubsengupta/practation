@@ -19,6 +19,12 @@ class Api::PresentationsController < ApplicationController
     end
   end 
 
+  def update
+    @presentation = Presentation.find params[:presentation][:id]
+    @presentation.update_attributes(presentation_params)
+    render 'presentation'
+  end
+
   def show
     @presentation = Presentation.find params[:id]
     render 'presentation'
@@ -30,6 +36,6 @@ class Api::PresentationsController < ApplicationController
 
   private
   def presentation_params
-    params.require(:presentation).permit(:name)
+    params.require(:presentation).permit(:name, :text)
   end
 end
