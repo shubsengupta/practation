@@ -3,7 +3,8 @@ class Speech.ListView extends Backbone.View
   render: (eventName) ->
     @$el.html $('#tpl-list-view').html()
 
-    @collection.each (pres) =>
+    @collection.each (pres, index) =>
+
       presView = new Speech.PresentationListView(collection: pres)
       presView.render()
       @$el.find('.target').append presView.$el.html()
