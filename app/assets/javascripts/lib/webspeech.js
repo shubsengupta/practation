@@ -154,7 +154,7 @@ function WebSpeechRecognition() {
 
   var first_char = /\S/;
   r.capitalize = function(s) {
-    return s;//.replace(first_char, function(m) { return m.toUpperCase(); });
+    return s;
   };
 
   if (!('webkitSpeechRecognition' in window)) {
