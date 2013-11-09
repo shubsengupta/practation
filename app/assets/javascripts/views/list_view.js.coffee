@@ -9,9 +9,13 @@ class Speech.ListView extends Backbone.View
       presView.render()
       @$el.find('.target').append presView.$el.html()
 
-      link = "/presentations/#{presView.get('id')}"
-
       @$el.find('.target tr').last().on 'click', ->
+
+        link = if presView.get('type') is 'TextPresentation'
+          "/presentations/#{presView.get('id')}"
+        else
+          "/slideshow/#{presView.get('id')}"
+
         Pra.delegator.navigate link, true
 
     @ 
