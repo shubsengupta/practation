@@ -122,14 +122,7 @@ function WebSpeechRecognition() {
   };
 
   r.setText = function(elem, text) {
-    // if (elem) {
-    //   if (elem.nodeName == 'INPUT') {
-    //     elem.value = text;
-    //   } else {
-    //   elem.innerHTML = r.linebreak(text);
-    //   }
-    // }
-    console.log(text)
+    console.log("Text: " + text)
   };
 
   // id is a DOM element or a string containing id or null.
