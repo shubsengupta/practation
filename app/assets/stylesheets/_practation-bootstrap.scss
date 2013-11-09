@@ -1,0 +1,63 @@
+//
+// Icon Font: practation
+// Bootstrap Override
+//
+
+@font-face {
+  font-family: "practation";
+  src: url("/practation_bc6c7f834c8882fd63a2e9aa10784fb5.eot");
+  src: url("/practation_bc6c7f834c8882fd63a2e9aa10784fb5.eot?#iefix") format("embedded-opentype"),
+       url("/practation_bc6c7f834c8882fd63a2e9aa10784fb5.woff") format("woff"),
+       url("/practation_bc6c7f834c8882fd63a2e9aa10784fb5.ttf") format("truetype"),
+       url("/practation_bc6c7f834c8882fd63a2e9aa10784fb5.svg#practation") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="ifont-"]:before, [class*=" ifont-"]:before {
+  font-family: "practation";
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  text-decoration: inherit;
+}
+
+a [class^="ifont-"], a [class*=" ifont-"] {
+  display: inline-block;
+  text-decoration: inherit;
+}
+
+.ifont-large:before {
+  vertical-align: top;
+  font-size: 1.333em;
+}
+
+.btn [class^="ifont-"], .btn [class*=" ifont-"] {
+  line-height: 0.9em;
+}
+
+li [class^="ifont-"], li [class*=" ifont-"] {
+  display: inline-block;
+  width: 1.25em;
+  text-align: center;
+}
+
+li .ifont-large[class^="ifont-"], li .ifont-large[class*=" ifont-"] {
+  width: 1.875em;
+}
+
+li[class^="ifont-"], li[class*=" ifont-"] {
+  margin-left: 0;
+  list-style-type: none;
+}
+
+li[class^="ifont-"]:before, li[class*=" ifont-"]:before {
+  text-indent: -2em;
+  text-align: center;
+}
+
+li[class^="ifont-"].ifont-large:before, li[class*=" ifont-"].ifont-large:before {
+  text-indent: -1.333em;
+}
+
+.ifont-slideshow:before { content: "\f100"; }

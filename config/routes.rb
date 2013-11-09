@@ -1,6 +1,7 @@
 SpeechApp::Application.routes.draw do
 
-  root 'tests#index'
+  root 'login#index'
+  match '/test' => 'texts#index', via: :get
   match '/dashboard' => 'main#index', via: :get
 
   match 'api/user' => 'api/users#index', via: :get

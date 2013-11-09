@@ -1,0 +1,18 @@
+{
+  "fonts": [
+    "/Users/az/Dropbox/Sites/speech-app/public/practation_bc6c7f834c8882fd63a2e9aa10784fb5.ttf",
+    "/Users/az/Dropbox/Sites/speech-app/public/practation_bc6c7f834c8882fd63a2e9aa10784fb5.woff",
+    "/Users/az/Dropbox/Sites/speech-app/public/practation_bc6c7f834c8882fd63a2e9aa10784fb5.eot",
+    "/Users/az/Dropbox/Sites/speech-app/public/practation_bc6c7f834c8882fd63a2e9aa10784fb5.svg"
+  ],
+  "templates": [
+    "/Users/az/Dropbox/Sites/speech-app/app/assets/fonts/previews/practation-preview.html",
+    "/Users/az/Dropbox/Sites/speech-app/app/assets/stylesheets/_practation-bootstrap.scss"
+  ],
+  "glyphs": [
+    "slideshow"
+  ],
+  "glyphcodes": [
+    61696
+  ]
+}

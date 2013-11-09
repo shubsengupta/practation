@@ -12,6 +12,10 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'thin'
 
+gem 'bootstrap-sass', '~> 3.0.2.0'
+gem 'font-awesome-sass-rails'
+gem 'forgery'
+
 group :doc do
   gem 'sdoc', require: false
 end

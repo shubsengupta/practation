@@ -14,12 +14,4 @@
 //= require jquery_ujs
 //= require turbolinks
 
-//= require lib/lodash.custom
-//= require lib/backbone
-
-//= require speech
-
-//= require_tree ./models
-//= require_tree ./views
-
-//= require main
+//= require bootstrap
