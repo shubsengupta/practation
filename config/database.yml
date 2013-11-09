@@ -7,7 +7,7 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: true
-  database: main
+  database: speech
   username: root
   password: dropD4ta
   port: 3306
@@ -20,9 +20,9 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: true
-  database: main
+  database: speech
   username: root
-  password: dropD4ta
+  password: 3
   port: 3306
   host: main.co0zeibfua1w.us-east-1.rds.amazonaws.com
 
@@ -30,7 +30,7 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: true
-  database: main
+  database: speech
   username: root
   password: dropD4ta
   port: 3306
