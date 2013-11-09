@@ -23,5 +23,8 @@ $ ->
 		hashChange: no
 		root: '/dashboard'
 
+	$('nav .navbar-header').on 'click', ->
+		Pra.delegator.navigate('/', true)
+
 
 	
