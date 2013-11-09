@@ -18,7 +18,7 @@ class Speech.Delegator extends Backbone.Router
 
 
 $ ->
-	Pra.del = new Speech.Delegator()
+	Pra.delegator = new Speech.Delegator()
 
 
 	
