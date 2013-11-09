@@ -3,9 +3,13 @@
     %nav.navbar.navbar-default{role: 'navigation'}
       .navbar-header
         .logo
+          %i.ifont-slideshow
+          %h1.brand Practation
 
-      %ul.nav.navbar-nav.pull-right
-        %li=link_to 'Logout', sign_out_path
+      .bar.pull-right
+        %button.btn.btn-default{type: 'button'} Add New
+        =link_to sign_out_path, class: 'btn btn-default btn-nav' do
+          = fa_icon 'sign-out'
 
 
   .container#view

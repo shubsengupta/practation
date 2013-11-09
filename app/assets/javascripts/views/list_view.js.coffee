@@ -14,4 +14,4 @@ class Speech.ListView extends Backbone.View
       @$el.find('.target tr').last().on 'click', ->
         Pra.delegator.navigate link, true
 
-    @
+    @ 
