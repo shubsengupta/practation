@@ -1,9 +1,7 @@
 class Api::UsersController < ApplicationController
 
   def index
-    if request.user
-      #redirect
-    end
+    render :json => request.user
   end
 
   def create
@@ -18,7 +16,8 @@ class Api::UsersController < ApplicationController
   def sign_in
     @user = User.find_by_email params[:email]
     if @user && @user.authenticate(params[:pass])
-       render 'user'
+      session[:user_id] = @user.id
+      render 'user'
     else
       render :json => nil
     end
