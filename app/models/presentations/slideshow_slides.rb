@@ -1,3 +1,4 @@
-class SlideshowSlides < ActiveRecord::Base
-  has_one :slide_presentation
+class SlideshowSlides < SlidePresentation
+  #image, #text
+  belongs_to :slide_presentation
 end
