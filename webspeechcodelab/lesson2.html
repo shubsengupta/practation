@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<link rel="stylesheet" href="style.css">
+
+<div id='supercontainer' >
+<h1>Lesson 2: Compose email by voice</h1>
+<p>Don't type your emails -- speak them!</p>
+<h2 id="goal">Goal</h2>
+<p>Create an web page to compose emails by voice.</p>
+</ol>
+<h2 id="do-it-now">Do it now</h2>
+<p>If you're happy with codelab1.html and got everything working, continue working in that file. If you'd like to start fresh, you can instead use codelab1solution.html to begin this lesson.</p>
+<h3>2.1 Create a space to hold the recognition text. </h3>
+<p>Since we'll be composing an email, we need a bigger place to display the text, so let's replace that little input field with a big box for text.
+This also allows us to add formating styles to the text, so let's provide a place to display the final text in black, and interim text in grey.</p>
+<p>The speech recognizer returns interim results quickly, but they may change until the speech recognizer marks them as final.
+Up until now, we have only displayed final results. By displaying the interim text in grey, we provide swift feedback to the user.</p>
+<p>Replace the &lt;form&gt; through &lt;/form&gt; element with the following HTML. This creates two &lt;span&gt; elements, one that displays black text and one that display grey text.</p>
+<pre class="sh_javascript"><code>&lt;div id="results"&gt;
+  &lt;span id="final_span" style="color:black"&gt;&lt;/span&gt;
+  &lt;span id="interim_span" style="color:gray"&gt;&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+<p>Also, replace your code that sets "reco.finalResults(..)" with the following two lines that refer to these new &lt;span&gt; elements.</p>
+<pre class="sh_javascript"><code>reco.finalResults('final_span');
+reco.interimResults('interim_span');</code></pre>
+<p>Finally, add a CSS style that draws a border box around the results &lt;div&gt; and makes the font and layout look nice. Put this just above the &lt;h1&gt; element.</p>
+<pre class="sh_javascript"><code>&lt;style&gt;
+  #results {
+    font-size: 20px;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: left;
+    vertical-align: text-top;
+    min-height: 150px;
+    width: 80%;
+    display: inline-block;
+  }
+&lt;/style&gt;</code></pre>
+<p><b>Test it.</b> Refresh the page and click on the microphone. As you speak, you'll see grey interim text flow out quickly, and then being replaced by black text as the recognizer makes a final determination of the results.</p>
+
+<h3>2.2 Use continuous recognition. </h3>
+<p>So far, recognition stops as soon as you pause speaking. Great for search queries, but not so good for composing an email unless you can say everything in one breath.</p>
+<p>Add the following code underneath the "reco.interimResults(..)" line to tell the recognizer to listen continuously until you click the microphone again to stop.</p>
+<pre class="sh_javascript"><code>reco.continuous = true;</code></pre>
+<p><b>Test it.</b> Refresh the page and click on the microphone and speak and speak and speak and pause and speak some more. Click the microphone again when your done.</p>
+
+<h3>2.3 Send the email. </h3>
+<p>Add a "Create Email" button. Put this HTML after the existing button.</p>
+<pre class="sh_javascript"><code>&lt;button onclick="emailButton()"&gt;Create Email&lt;/button&gt;</code></pre>
+<p>Now add the code that executes when the "Create Email" button is clicked.
+We'll also change how we handle onEnd when speech recognition completes so that it creates the email from the final_transcript.
+Replace your reco.onEnd callback code with the following code.</p>
+<pre class="sh_javascript"><code>var create_email_on_end = false;
+
+// Handler when speech recognition completes.
+reco.onEnd = function() {
+  if (create_email_on_end) {
+    create_email_on_end = false;
+    createEmail(reco.final_transcript);
+  }
+};
+
+// Handler when user clicks "Create Email" button.
+function emailButton() {
+  if (reco.inProgress()) {
+    // Wait for recognition to end before calling createEmail().
+    create_email_on_end = true;
+    reco.stop();
+  } else {
+    // Recognition has already ended, call createEmail() now.
+    createEmail(reco.final_transcript);
+  }
+  reco.onState('complete');
+}
+
+// Create email by splitting string s into subject and body.
+function createEmail(s) {
+  // Determine a good place to split it: end of first line, else at a space.
+  var n = s.indexOf('\n');
+  if (n < 0 || n >= 80) {
+    n = 40 + s.substring(40).indexOf(' ');
+  }
+  var subject = encodeURI(s.substring(0, n));
+  var body = encodeURI(s.substring(n + 1));
+  // Open default email provider.
+  window.location.href = 'mailto:?subject=' + subject + '&body=' + body;
+}</code></pre>
+<p><b>Test it.</b> Refresh the page and click on the microphone. When you're done, click "Create Email".</p>
+<p>If it doesn't work, or if you want to change your default email provider, see chrome://settings/handlers</p>
+
+<h2>Next up: <a href='lesson3.html'>Lesson 3</a></h2>
+<hr>
+<i><p>This Codelab by <a href='https://plus.google.com/u/0/110477083701772758618/posts'>Glen Shires</a>.  Visit me on Google+!</i></p>
+

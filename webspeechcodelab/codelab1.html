@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Web Speech API Demo</title>
+
+<h1>Web Speech API Demonstration</h1>
+
+<div id="status">
+</div>
+
+<p></p>
+
+<div id="results">
+  <span id="final_span" style="color:black"></span>
+  <span id="interim_span" style="color:gray"></span>
+</div>
+
+<button onclick="reco.toggleStartStop()">
+  Start
+</button>
+
+<script src="webspeech.js"></script>
+<script>
+  var reco = new WebSpeechRecognition();
+  reco.statusText('status');
+  reco.continuous = true;
+  reco.finalResults('final_span');
+  reco.interimResults('interim_span');
+</script>

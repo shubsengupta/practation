@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<link rel="stylesheet" href="style.css">
+
+<div id='supercontainer' >
+<h1>Lesson 4: Alternatives</h1>
+<h2 id="goal">Goal</h2>
+<p>Speech recognition does not always produce perfect results.
+Here we'll display potential alternative results in a selection list. 
+</p>
+<h2 id="do-it-now">Do it now</h2>
+<p>If you're happy with your results from Lesson 3 and got everything working, continue working in that file. If you'd like to start fresh, you can instead use codelab3solution.html to begin this lesson.</p>
+<h3>4.1 Display the alternatives. </h3>
+<p>The speech recognizer can be configured to generate alternative results (sometimes called n-best results).
+To get these results, we'll process the onresult event directly.
+(Up until now, the webspeech.js library has been processing this event, but here we'll override that.)</p>
+<p>Add the following within your &lt;script&gt; tags.</p>
+<pre class="sh_javascript"><code>// Handler for speech recognition results.
+reco.recognition.onresult = function(event) {
+  var interim_transcript = '';
+  // Process all new results, both final and interim.
+  for (var i = event.resultIndex; i < event.results.length; ++i) {
+    if (event.results[i].isFinal) {
+      appendSelectOptions('final_span', event.results[i]);
+    } else {
+      interim_transcript += event.results[i][0].transcript;
+    }
+  }
+  document.getElementById('interim_span').innerHTML = interim_transcript;
+};
+
+// Create a new &lt;select&gt; element containing an &lt;option&gt; for each of the
+// speech_recognition_result alternatives.
+// Then append this &lt;select&gt; element to destination_id.
+function appendSelectOptions(destination_id, speech_recognition_result) {
+  var select = document.createElement('SELECT')  
+  for (var i = 0; i < speech_recognition_result.length; ++i) {
+    var option = document.createElement('OPTION')  
+    option.text = speech_recognition_result[i].transcript;
+    option.value = i;
+    select.options.add(option)  
+  } 
+  document.getElementById(destination_id).appendChild(select);
+}</code></pre>
+<p><b>Test it.</b> Refresh the page and click the microphone. You'll see the final results show up in selection drop downs.
+However, each selection only has one option, so far...</p>
+
+
+<h3>4.2 Configure the maximum number of alternatives. </h3>
+<p>Add the following line just below the "reco.continuous" line.</p>
+<pre class="sh_javascript"><code>reco.maxAlternatives = 10;</code></pre>
+<p><b>Test it.</b> Refresh the page and click the microphone. Now the selection drop downs will contain up to 10 alternative results.</p>
+<p>These alternative results are listed in order from greatest confidence to least, corresponding to the order the speech recognizer provided them.</p>
+
+
+<h3>4.3 Output user-selected results when CreateEmail(). </h3>
+<p>When CreateEmail is called, it should be passed a string that corresponds to the selections that the user made.
+Implementing this is left as an exercise for the reader.</p>
+
+
+<h2>Next up: Make your website awesome.</h2>
+
+<p>You've learned the techniques to add speech to your website. You've seen how the webspeech.js library makes it easy to add speech
+with just a few lines of code, and how you can customize it further as needed.</p>
+<p>Add speech to your website. Use whatever parts of webspeech.js you need, and overwrite anything you need to change.
+Or just use webspeech.js as code snippets for your app.
+Or if you want complete control, skip the library and code directly to the Web Speech API as in this
+<a href="http://updates.html5rocks.com/2013/01/Voice-Driven-Web-Apps-Introduction-to-the-Web-Speech-API">Tutorial</a></p>
+<p>Happy coding!</p>
+
+<i><p>This Codelab by <a href='https://plus.google.com/u/0/110477083701772758618/posts'>Glen Shires</a>.  Visit me on Google+!</i></p>
+

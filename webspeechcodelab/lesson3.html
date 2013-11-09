@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<link rel="stylesheet" href="style.css">
+
+<div id='supercontainer' >
+<h1>Lesson 3: Parlez-vous français</h1>
+<h2 id="goal">Goal</h2>
+<p>Allow user to select which language to speak (and configure the speech recognizer accordingly).</p>
+<h2 id="do-it-now">Do it now</h2>
+<p>If you're happy with your results from Lesson 2 and got everything working, continue working in that file. If you'd like to start fresh, you can instead use codelab2solution.html to begin this lesson.</p>
+<h3>3.1 Let the user select the language. </h3>
+<p>So far, the speech recognition has been in English.
+(More precisely, since we haven't explicitly set it, it's been defaulting to the 'lang' of the html document, which is defaulting to English.)</p>
+<p>Let's create some selection options to allow the user to choose the language.
+Add the following below the "Create Email" button.</p>
+<pre class="sh_javascript"><code>&lt;div id="div_language"&gt;
+  &lt;select id="select_language" onchange="updateCountry()"&gt;&lt;/select&gt;
+  &lt;select id="select_dialect"&gt;&lt;/select&gt;
+&lt;/div&gt;</code></pre>
+<p>Now let's add the script to populate those selections.
+This script contains an array of available languages, as well as their associated
+<a href="http://www.ietf.org/rfc/bcp/bcp47.txt">BCP47</a> tag.
+This tag is the one we will use to configure the speech recognition language.</p>
+<p>This is not a full list of languages supported.
+In particular some right-to-left languages are also supported, such as he-IL and ar-EG.</p>
+<p>Add this code at the bottom of the file but before the &lt;/script&gt; tag.</p>
+<pre class="sh_javascript"><code>var langs =
+[['Afrikaans',       ['af-ZA']],
+ ['Bahasa Indonesia',['id-ID']],
+ ['Bahasa Melayu',   ['ms-MY']],
+ ['Català',          ['ca-ES']],
+ ['Čeština',         ['cs-CZ']],
+ ['Deutsch',         ['de-DE']],
+ ['English',         ['en-AU', 'Australia'],
+                     ['en-CA', 'Canada'],
+                     ['en-IN', 'India'],
+                     ['en-NZ', 'New Zealand'],
+                     ['en-ZA', 'South Africa'],
+                     ['en-GB', 'United Kingdom'],
+                     ['en-US', 'United States']],
+ ['Español',         ['es-AR', 'Argentina'],
+                     ['es-BO', 'Bolivia'],
+                     ['es-CL', 'Chile'],
+                     ['es-CO', 'Colombia'],
+                     ['es-CR', 'Costa Rica'],
+                     ['es-EC', 'Ecuador'],
+                     ['es-SV', 'El Salvador'],
+                     ['es-ES', 'España'],
+                     ['es-US', 'Estados Unidos'],
+                     ['es-GT', 'Guatemala'],
+                     ['es-HN', 'Honduras'],
+                     ['es-MX', 'México'],
+                     ['es-NI', 'Nicaragua'],
+                     ['es-PA', 'Panamá'],
+                     ['es-PY', 'Paraguay'],
+                     ['es-PE', 'Perú'],
+                     ['es-PR', 'Puerto Rico'],
+                     ['es-DO', 'República Dominicana'],
+                     ['es-UY', 'Uruguay'],
+                     ['es-VE', 'Venezuela']],
+ ['Euskara',         ['eu-ES']],
+ ['Français',        ['fr-FR']],
+ ['Galego',          ['gl-ES']],
+ ['IsiZulu',         ['zu-ZA']],
+ ['Íslenska',        ['is-IS']],
+ ['Italiano',        ['it-IT', 'Italia'],
+                     ['it-CH', 'Svizzera']],
+ ['Magyar',          ['hu-HU']],
+ ['Nederlands',      ['nl-NL']],
+ ['Norsk bokmål',    ['nb-NO']],
+ ['Polski',          ['pl-PL']],
+ ['Português',       ['pt-BR', 'Brasil'],
+                     ['pt-PT', 'Portugal']],
+ ['Română',          ['ro-RO']],
+ ['Slovenčina',      ['sk-SK']],
+ ['Suomi',           ['fi-FI']],
+ ['Svenska',         ['sv-SE']],
+ ['Türkçe',          ['tr-TR']],
+ ['български',       ['bg-BG']],
+ ['Pусский',         ['ru-RU']],
+ ['Српски',          ['sr-RS']],
+ ['한국어',            ['ko-KR']],
+ ['中文',             ['cmn-Hans-CN', '普通话 (中国大陆)'],
+                     ['cmn-Hans-HK', '普通话 (香港)'],
+                     ['cmn-Hant-TW', '中文 (台灣)'],
+                     ['yue-Hant-HK', '粵語 (香港)']],
+ ['日本語',           ['ja-JP']],
+ ['Lingua latīna',   ['la']]];
+
+function updateCountry() {
+  for (var i = select_dialect.options.length - 1; i >= 0; i--) {
+    select_dialect.remove(i);
+  }
+  var list = langs[select_language.selectedIndex];
+  for (var i = 1; i < list.length; i++) {
+    select_dialect.options.add(new Option(list[i][1], list[i][0]));
+  }
+  select_dialect.style.visibility = list[1].length == 1 ? 'hidden' : 'visible';
+}
+
+for (var i = 0; i < langs.length; i++) {
+  select_language.options[i] = new Option(langs[i][0], i);
+}
+select_language.selectedIndex = 6;
+updateCountry();
+select_dialect.selectedIndex = 6;
+</code></pre>
+<p><b>Test it.</b> Refresh the page and choose among various languages. You'll see that for certain languages, such as English and Español, you can also select the dialect. No need to click the microphone button yet, as we haven't yet configured the speech recognition with the value selected.</p>
+
+
+<h3>3.2 Configure speech recognition with the language selected. </h3>
+<p>Change the button element that implements onclick="reco.toggleStartStop()" to call a new function instead.</p>
+<pre class="sh_javascript"><code>&lt;button onclick="microphoneButton()" style="border: 0; background-color:transparent"&gt;</code></pre>
+<p>Now add the script to handle this button's onclick.
+It retrieves the BCP47 value from the selection and passes it to the recognition object, and then calls toggleStartStop() as before.</p>
+<p>Put this code anywhere within the &lt;script&gt; tags.</p>
+<pre class="sh_javascript"><code>// Handler when user clicks microphone button.
+function microphoneButton() {
+  reco.lang = select_dialect.value;
+  reco.toggleStartStop();
+}
+</code></pre>
+<p><b>Test it.</b> Refresh the page and choose your favorite language. Then click on the microphone and speak.</p>
+
+
+<h2>Next up: <a href='lesson4.html'>Lesson 4</a></h2>
+
+<i><p>This Codelab by <a href='https://plus.google.com/u/0/110477083701772758618/posts'>Glen Shires</a>.  Visit me on Google+!</i></p>
+
