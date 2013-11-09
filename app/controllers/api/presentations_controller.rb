@@ -1,7 +1,7 @@
 class Api::PresentationsController < ApplicationController
   def index
     @presentations = request.user.try(:presentations)
-    render :json => @presentations
+    render 'index'
   end
 
   def create

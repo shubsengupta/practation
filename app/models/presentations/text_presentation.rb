@@ -1,4 +1,4 @@
-class TextPresentation < ActiveRecord::Base
+class TextPresentation < Presentation
   #text
-  has_one :presentation, autosave:true
+  belongs_to :presentation, autosave:true
 end

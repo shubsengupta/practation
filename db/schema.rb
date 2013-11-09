@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131109101141) do
+ActiveRecord::Schema.define(version: 20131109144726) do
 
   create_table "presentations", force: true do |t|
     t.string   "name"
@@ -19,15 +19,10 @@ ActiveRecord::Schema.define(version: 20131109101141) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "type"
+    t.text     "text"
   end
 
   add_index "presentations", ["user_id"], name: "index_presentations_on_user_id", using: :btree
-
-  create_table "slide_presentations", force: true do |t|
-    t.integer "presentation_id"
-  end
-
-  add_index "slide_presentations", ["presentation_id"], name: "index_slide_presentations_on_presentation_id", using: :btree
 
   create_table "slideshow_slides", force: true do |t|
     t.integer "slide_presentation_id"
@@ -36,13 +31,6 @@ ActiveRecord::Schema.define(version: 20131109101141) do
   end
 
   add_index "slideshow_slides", ["slide_presentation_id"], name: "index_slideshow_slides_on_slide_presentation_id", using: :btree
-
-  create_table "text_presentations", force: true do |t|
-    t.integer "presentation_id"
-    t.string  "text"
-  end
-
-  add_index "text_presentations", ["presentation_id"], name: "index_text_presentations_on_presentation_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email"
