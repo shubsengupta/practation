@@ -17,7 +17,8 @@ class Speech.Delegator extends Backbone.Router
 
 
 
+$ ->
+	Pra.del = new Speech.Delegator()
 
-	$.get Speech.Presentation.prototype.urlRoot, (data) ->
-		console.log data
-		Pra.presentations = new Speech.PresentationsCollection(data)
+
+	
