@@ -1,0 +1,70 @@
+#main
+	.container
+		.row
+			.col-xs-12
+				#logo
+					.background
+						%i.ifont-slideshow
+					.foreground 
+						%h1 Practation
+
+
+		.row
+			.col-xs-12.col-md-8.col-md-offset-2
+				#login
+					%form{:role => 'form'}
+						.form-group
+							%level{:for => 'email'} Email Address
+							%input.form-control#email{:type => 'email', :placeholder => 'Email Address'}
+						.form-group
+							%level{:for => 'password'} Password
+							%input.form-control#email{:type => 'password', :placeholder => 'Password'}
+
+						.submit
+							%button.btn.btn-default.btn-lg{:type => 'submit'} Login
+
+						.options
+							= link_to("Forgot Password", "#")
+							= '•'
+							= link_to("Sign Up", "#")
+
+	.band
+		.container
+			.row
+				.col-xs-12.col-md-8.col-md-offset-2
+					#hero
+						.quote
+							%h2 "The best app we've ever used."
+						.source
+							%h3 - Best Co.
+
+	.container
+		.row
+			.col-sm-4.col-sm-offset-2
+				.callout
+					%h2
+						What is
+						%span.brand Practation
+						?
+
+					%p= Forgery::LoremIpsum.sentences(6)
+
+			.col-sm-4
+				.big-icon
+					%i.icon-cloud
+
+		.row
+			.col-sm-4.col-sm-offset-2
+				.big-icons
+					%i.icon-microphone.brand-colour
+					%i.icon-long-arrow-right
+					%i.icon-file-text.brand-colour
+				
+			.col-sm-4
+				.callout
+					%h2
+						Why use
+						%span.brand Practation
+						?
+
+					%p= Forgery::LoremIpsum.sentences(6)

@@ -1,0 +1,82 @@
+/*
+ * This is a manifest file that'll be compiled into login.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ */
+
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800")
+
+$font-family-sans-serif: 'Open Sans', sans-serif
+$brand-primary: #07BE9A
+
+$body-bg: #EBEFF1
+
+$brand-secondary: #E5E5E5
+
+@import "bootstrap"
+@import "font-awesome"
+@import "practation-bootstrap"
+
+.brand-colour
+	color: $brand-primary
+
+
+#main
+	margin-bottom: 60px
+
+#logo
+	margin-top: 60px
+	text-align: center
+
+	.background
+		i
+			font-size: 100px
+			color: $brand-secondary
+
+	.foreground
+		h1
+			margin-top: -100px
+			color: $brand-primary
+			font-size: 46px
+
+
+#login
+	margin-top: 100px
+
+	.submit, .options
+		text-align: center
+
+	.options
+		margin-top: 12px
+
+.band
+	background-color: $brand-primary
+	margin: 100px 0
+	color: #FFF
+	text-align: right
+
+	#hero
+		.quote
+
+
+.callout
+	span.brand
+		color: $brand-primary
+
+.big-icon
+	text-align: center
+	font-size: 180px
+
+.big-icons
+	text-align: center
+	font-size: 100px
+	margin-top: 40px
+
+
