@@ -4,6 +4,7 @@ SpeechApp::Application.routes.draw do
   match '/test' => 'tests#index', via: :get
   match '/dashboard' => 'main#index', as: :dashboard, via: :get
   match '/dashboard/presentations/:id' => 'main#index', via: :get
+  match '/dashboard/slideshow/:id' => 'main#index', via: :get
 
   match 'api/user' => 'api/users#index', via: :get
   match 'api/user/create' => 'api/users#create', via: :post
