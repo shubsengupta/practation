@@ -12,7 +12,6 @@ $ ->
   window.waiting_pointer = 0
   Backbone.Events.on 'finalTextUpdate', ->
     if last_text != arguments[0]
-      console.log('Final: ' + arguments[0])
       $('span#final_span').html(arguments[0])
       last_text = arguments[0]
       setInterval () ->

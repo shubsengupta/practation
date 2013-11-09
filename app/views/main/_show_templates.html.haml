@@ -1,8 +1,23 @@
 %script#tpl-presentation-view{type: 'text/template'}
-  
-  %label{for: 'input-field'}
+  #results
+    %span#matched{style: 'display: none'}
+    .items 
+      %span#final_span{style: "display: none"} 
+      %span#interim_span{style: "display: none"}
+
+  %h1.hide#name-heading
+  .done
+    %span#body-text-checked
+    %span#body-text
+
+  %label#name-label{for: 'input-field'}
     Name
-    %input{:value => "{{ name }}", type: 'text'}
-  %textarea#input-field
+    %input#input-name{:value => "{{ name }}", type: 'text'}
+  %textarea#input-speech
     {{ text }}
-  %button.btn.btn-default.btn-lg.pull-right#startButton Start
+  %br
+  %br
+  %button.btn.btn-default.btn-lg.pull-right#saveText{:'data-disable-with' => 'Saving...'} Save
+  %button.btn.btn-default.btn-lg#practText Practice
+  %button.btn.btn-default.btn-lg#reherText Rehearse
+  %button.btn.btn-default.btn-lg#preseText Present

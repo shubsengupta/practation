@@ -13,6 +13,7 @@ SpeechApp::Application.routes.draw do
 
   match '/api/presentations' => 'api/presentations#index', via: :get
   match '/api/presentations/:id' => 'api/presentations#show', via: :get
+  match '/api/presentations/:id' => 'api/presentations#update', via: :put
 
   match 'api/presentations/create' => 'api/presentations#create', via: [:get, :post]
 

@@ -18,6 +18,7 @@
 
 //= require lib/lodash.custom
 //= require lib/backbone
+//= require lib/webspeech
 
 //= require speech
 
