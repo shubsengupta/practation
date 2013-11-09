@@ -19,9 +19,12 @@ $ ->
     $('span#interim_span').html(arguments[0])
     console.log('Interim: ' + arguments[0])
 
+  window.wait = false
   setInterval ->
-    window.check()
-  , 500
+    unless wait
+      wait = true
+      window.check()
+  , 200
 
   $('button#startButton').click (e) ->
     text_map = $('textarea#input').val().trim().replace(/[\.,-\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s{2,}/g," ")
@@ -62,8 +65,9 @@ $ ->
       vocal_pointer += first_space + 1
     else
       missed = $('#unchecked').html().substr(waiting_pointer).substr(0, is_in)
-      $('#checked').html( $('#checked').html() + "<span style='color:yellow'>" + missed + "</span>" )
+      $('#checked').html( $('#checked').html() + "<span style='color:blue'>" + missed + "</span>" )
       $('#unchecked').html( $('#unchecked').html().substr(missed.length) )
+    window.wait = false
 
 
 
