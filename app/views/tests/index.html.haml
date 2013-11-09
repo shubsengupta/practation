@@ -2,6 +2,8 @@
 
 %textarea#input
 
-%br
+#results
+  %span#final_span{style: "color:black"}
+  %span#interim_span{style: "color:gray"}
 
-%button{:onclick =>"reco.toggleStartStop()"} Toggle
+%button{onclick: "reco.toggleStartStop()"} Start
