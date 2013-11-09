@@ -10,9 +10,11 @@ class Speech.Delegator extends Backbone.Router
 		'presentations/:id': 'show'
 
 	list: -> 
+		console.log 'List'
 		Speech.Controller.load_list(@)
 
 	show: (id) ->
+		console.log 'Show'
 		Speech.Controller.load_show(@, id)
 
 
