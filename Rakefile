@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Qc::Application.load_tasks
+SpeechApp::Application.load_tasks

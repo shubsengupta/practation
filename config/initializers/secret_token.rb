@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Qc::Application.config.secret_key_base = 'c5f5e7fa6a88cba7f18ab89bab6449b14d626349f06ee5d07179754b4f007e09c322ace71d5bd10be87d5b3ec1536b6fbb32d5161286f47f5664a46b5b913382'
+SpeechApp::Application.config.secret_key_base = 'e51af5570bb193030c5afdbad8b3bbd743026de920f214e6d024afa2c59fe59fb3cb4cecdc670251900c7eafa84a7e6aedadff38539b33b8dd76d0884f50ed87'
