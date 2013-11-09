@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<link rel="stylesheet" href="style.css">
+
+<div id='supercontainer' >
+<h1>Lesson 1: Search by voice</h1>
+<p>Don't type your search queries -- speak them!</p>
+<h2 id="goal">Goal</h2>
+<p>Create a web page to search the internet by voice.</p>
+</ol>
+<h2>You'll need</h2>
+<ul>
+<li><p><a href="www.google.com/chrome/‎">Chrome browser</a>.</p></li>
+<li><p>Any text editor.</p></li>
+<li><p>A web server that you have access to save files on.  The Web Speech API only works for files served via https:// or http:// and not file:///</p></li>
+</ul>
+<p>One way to set up a web server is by using <a href="https://drive.google.com/‎">Google Drive</a> as follows:.
+<ol>
+<li><p>Create a new folder in Google Drive.</p></li>
+<li><p>Share the folder so that it is public viewable.</p></li>
+<li><p>Put the file "codelab1.html" in that folder, make sure it is also public viewable.</p></li>
+<li><p>Navigate into the folder containing "codelab1.html", the URL will end with a long unique string after the last "/".</p></li>
+<li><p>Copy and paste that long unique string to the end of this URL www.googledrive.com/host/ and open it in Chrome. For example: https://googledrive.com/host/0B1jg9xNg9UTqQXZRQ1p3UGRBOGM</p></li>
+</ol>
+<h2>Setup</h2>
+<ul>
+<li><p>Open "codelab1.html" in your text editor and also open it in your Chrome browser using https:// or http:// but not file:///</p></li>
+<li><p>Open Chrome's developer console Ctrl-Shift-C or Cmd-Shift-C.</p></li>
+<li><p>Click the gear icon in the bottom-right corner of the console. Check the box "Disable cache (while DevTools is open)" and close the settings (but keep the console window open).</p></li>
+</ul>
+<h2 id="your-development-cycle">Your development cycle</h2>
+<p>Your development cycle will be:</p>
+<ol style="list-style-type: decimal">
+<li><p>Edit the "codelab1.html" file with your favorite text editor.</p></li>
+<li><p>Save it to your web server.</p></li>
+<li><p>Reload the Chrome browser tab containing "codelab1.html".</p></li>
+<li><p>Test your app. Look at your Javascript console for errors (Ctrl-shift-J, cmd-alt-J to see the Javascript console.) If there are problems, edit and save and reload.</p></li>
+<li><p>When you're happy with your work, move on to the next step.  If you get stuck, see the Troubleshooting section below.</p></li>
+</ol>
+<h2 id="do-it-now">Do it now</h2>
+<p>Look at "codelab1.html" in your text editor. You'll see that it's a form with an input field. When the form is submitted, it sends the input text and gets a search result.</p>
+<p><b>Test it.</b> Open the "codelab1.html" page in Chrome. Type something into the input field then press the &quot;Enter&quot; key.
+   After viewing the search results, click Chrome's &quot;Back&quot; button and you're back on the page you started with.</p>
+<p>In your text editor, look for comments like the following. These show where to put the following code:</p>
+<pre class="sh_javascript"><code>&lt;!-- CODELAB 1.1: Create new WebSpeechRecognition object HERE --&gt;</code></pre>
+<h3>1.1 Add the basic script. </h3>
+<p>The following script does several important things.
+<ul>
+<li><p>Includes the "webspeech.js" library, which implements a WebSpeechRecognition object, and provides several helper functions implemented within that object.</p></li>
+<li><p>Creates that WebSpeechRecognition object.</p></li>
+<li><p>Configures that WebSpeechRecognition object to write its final recognition results to the "input_field".</p></li>
+</ul>
+<p>Add this script at the end of the "codelab1.html" file.</p>
+<pre class="sh_javascript"><code>&lt;script src="webspeech.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  var reco = new WebSpeechRecognition();
+  reco.finalResults('input_field');
+&lt;/script&gt;</code></pre>
+<p>You can find more details by looking at <a href="webspeech.js">webspeech.js</a> and reading its comments.</p>
+<h3>1.2 Add button to start / stop recognition. </h3>
+<p>Create a button that looks like a microphone. When clicked, it calls the recognition object's toggleStartStop function. Put the following HTML below the &lt;form&gt; element.</p>
+<pre class="sh_javascript"><code>&lt;button onclick="reco.toggleStartStop()"&gt;
+  &lt;img id="status_img" src="mic.gif" alt="Start"&gt;
+&lt;/button&gt;</code></pre>
+<p><b>Test it.</b> Refresh the page in Chrome, click the button, and say something.
+   If you see a permissions prompt at the top of the page, click "Allow", and then say something.
+   The speech recognition results should appear in the input field.</p>
+<p>If your pages are served by https:// you will only see this permissions prompt once per domain.
+   If using http:// it will keep popping up.</p>
+
+<h3>1.3 Add status text.</h3>
+<p>Let's add status and instructions to assist the user.</p> 
+<p>Add a &lt;div&gt; element to display status information. Put this in the HTML above the &lt;form&gt; element.</p>
+<pre class="sh_javascript"><code>&lt;div id="status"&gt;
+&lt;/div&gt;</code></pre>
+<p>Also, add the following to refer to this new &lt;div&gt; element so that status text can be written to it.
+Put this line just below your code that creates the "new WebSpeechRecognition()" object.</p>
+<pre class="sh_javascript"><code>reco.statusText('status');</code></pre>
+<p><b>Test it.</b> Refresh the page and you should see a status line that changes when you click on the microphone.</p>
+
+<h3>1.4 Change the microphone icon button to indicate state.</h3>
+<p>Let's provide even more feedback for the user.
+Add the following to refer to the button's image element so that status changes can update the image.
+Put this line just below your code that creates the "new WebSpeechRecognition()" object.</p>
+<pre class="sh_javascript"><code>reco.statusImage('status_img');</code></pre>
+<p><b>Test it.</b> Refresh the page in Chrome. You should see a microphone instead of the button. Click on the microphone to start recognition.</p>
+
+<h3>1.5 Submit the form.</h3>
+<p>Rather than just showing the speech recognition results, it should automatically perform the search after a successful recognition.</p>
+<p>Add a callback function that runs when recognition is complete. This code checks to see if any results were returned, and if so, submits the form. Add this code at the bottom of the file but before the &lt;/script&gt; tag.</p>
+<pre class="sh_javascript"><code>reco.onEnd = function() {
+  if (reco.final_transcript != '') {
+    input_field.form.submit();
+  }
+};
+</code></pre>
+<p><b>Test it.</b> Refresh the page, click on the microphone and say something. It should automatically return search results.</p>
+
+<h2>How it works</h2>
+<p>The <a href="http://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">Web Speech API specification</a> are the fundamental building blocks implemented in Chrome.</p>
+<p>In this codelab, we are using a wrapper script <a href="webspeech.js">webspeech.js</a> which provides several helper functions implemented within the recognition object.
+   You can use the built-in functionality of webspeech.js, or overwrite most of the functions and attributes to customize the way it works.
+   Alternatively, you can study webspeech.js to learn how to access the Web Speech API directly, or read this
+   <a href="http://updates.html5rocks.com/2013/01/Voice-Driven-Web-Apps-Introduction-to-the-Web-Speech-API">Tutorial</a>.</p>
+
+<h2>Troubleshooting</h2>
+<p>Use view-source to ensure that the page you're testing includes the changes you just made. If not:</p>
+<ul>
+<li><p>Refresh the page.</p></li>
+<li><p>Ensure you have "Disable cache (while DevTools is open)" and Chrome's console window is open.</p></li>
+<li><p>Some web servers take a while to propagate changes, so patience and another refresh may be required.</p></li>
+</ul>
+<p>If you run into problems getting any of the steps to work properly, check Chrome's developer console. If any errors are listed, track them down.
+Alternatively, use Chrome's rich <a href="https://developers.google.com/chrome-developer-tools/docs/javascript-debugging">debugging tools</a>,
+or add window.console.log('test'); statements at key spots in your code to see progress and/or display values.</p>
+
+<p>You can also peek at codelab1solution.html, which contains the complete solution for this codelab.</p>
+
+<h2>Next up: <a href='lesson2.html'>Lesson 2</a></h2>
+<hr>
+<i><p>This Codelab by <a href='https://plus.google.com/u/0/110477083701772758618/posts'>Glen Shires</a>.  Visit me on Google+!</i></p>
+

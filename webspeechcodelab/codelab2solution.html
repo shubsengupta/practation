@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Web Speech API Demo</title>
+
+<style>
+  #results {
+    font-size: 20px;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: left;
+    vertical-align: text-top;
+    min-height: 150px;
+    width: 80%;
+    display: inline-block;
+  }
+</style>
+<h1>Web Speech API Demonstration</h1>
+<div id="status">
+</div>
+<p>
+<div id="results">
+  <span id="final_span" style="color:black"></span>
+  <span id="interim_span" style="color:gray"></span>
+</div>
+<button onclick="reco.toggleStartStop()" style="border: 0; background-color:transparent">
+  <img id="status_img" src="mic.gif" alt="Start"></button>
+<button onclick="emailButton()">Create Email</button>
+
+<script src="webspeech.js"></script>
+<script>
+var reco = new WebSpeechRecognition();
+reco.statusText('status');
+reco.statusImage('status_img');
+reco.finalResults('final_span');
+reco.interimResults('interim_span');
+reco.continuous = true;
+
+var create_email_on_end = false;
+
+// Handler when speech recognition completes.
+reco.onEnd = function() {
+  if (create_email_on_end) {
+    create_email_on_end = false;
+    createEmail(reco.final_transcript);
+  }
+};
+
+// Handler when user clicks "Create Email" button.
+function emailButton() {
+  if (reco.inProgress()) {
+    // Wait for recognition to end before calling createEmail().
+    create_email_on_end = true;
+    reco.stop();
+  } else {
+    // Recognition has already ended, call createEmail() now.
+    createEmail(reco.final_transcript);
+  }
+  reco.onState('complete');
+}
+
+// Create email by splitting string s into subject and body.
+function createEmail(s) {
+  // Determine a good place to split it: end of first line, else at a space.
+  var n = s.indexOf('\n');
+  if (n < 0 || n >= 80) {
+    n = 40 + s.substring(40).indexOf(' ');
+  }
+  var subject = encodeURI(s.substring(0, n));
+  var body = encodeURI(s.substring(n + 1));
+  // Open default email provider.
+  window.location.href = 'mailto:?subject=' + subject + '&body=' + body;
+}
+</script>
