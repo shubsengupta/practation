@@ -6,5 +6,4 @@ class Speech.Slide extends Backbone.Model
 ###*
  * Collection of slides... 
 ###
-
 class Speech.SlidesCollection extends Backbone.Model

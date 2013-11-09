@@ -10,6 +10,9 @@ _.extend window,
 	S: Speech
 	speech: Speech
 
+
+window.Pra = {}
+
 # using handlebar style template delimiters
 _.templateSettings = {
   'interpolate': /{{([\s\S]+?)}}/g
