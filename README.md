@@ -1,4 +1,4 @@
-# Practation - The best way to practive your presentation
+# Practation - The best way to practice your presentation
 
 Practation is a smart cue-card that helps you practice, rehearse and present.
 
